@@ -3,28 +3,28 @@ from Params import *
 
 
 def updateGrid(OpenSet, ClosedSet, grid, win):
-    for j in range(cols):
-        for i in range(rows):
+    for j in range(len(grid[0])):
+        for i in range(len(grid)):
 
             if grid[i][j].isWall:
-                grid[i][j].show(win, 'black')
+                grid[i][j].show(win, NODE_BORDER)
             else:
-                grid[i][j].show(win, 'blue')
+                grid[i][j].show(win, NODE_EMPTY)
 
     for j in range(len(OpenSet)):
-        OpenSet[j].show(win, 'green')
+        OpenSet[j].show(win, NODE_OPENED)
 
     for j in range(len(ClosedSet)):
-        ClosedSet[j].show(win, 'red')
+        ClosedSet[j].show(win, NODE_CLOSED)
 
     update(changeRate)
 
 
 def draw_path(StartNode, EndNode, win):
     if DrawGrid:
-        StartNode.show(win, 'yellow')
-        EndNode.show(win, 'yellow')
-        update(changeRate)
+        StartNode.show(win, NODE_PATH)
+        EndNode.show(win, NODE_PATH)
+        update(PathchangeRate)
 
     previous = EndNode.Parent
     ContinueSearch = True
@@ -33,8 +33,8 @@ def draw_path(StartNode, EndNode, win):
     while ContinueSearch:
         solutionLength = solutionLength+1
         if DrawGrid:
-            previous.show(win, 'yellow')
-            update(changeRate)
+            previous.show(win, NODE_PATH)
+            update(PathchangeRate)
         previous = previous.Parent
         if previous == StartNode:
             ContinueSearch = False

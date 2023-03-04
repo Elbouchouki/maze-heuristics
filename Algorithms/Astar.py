@@ -1,5 +1,5 @@
 from .Distances import heuristic
-from .utils import updateGrid
+from Utils import updateGrid
 from Params import *
 
 

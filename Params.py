@@ -1,11 +1,18 @@
-height = 600
-width = 600
-cols = 200
-rows = 200
+height = 1000
+width = 1000
+cols = 20
+rows = 20
 w = height/rows
 h = width/cols
 WallPercentage = 30
-DrawGrid = True
+DrawGrid = False
+waitForStart = False
 
+NODE_EMPTY = 'white'
+NODE_BORDER = 'black'
+NODE_PATH = 'green'
+NODE_OPENED = 'yellow'
+NODE_CLOSED = 'red'
 
-changeRate = 100000
+changeRate = 10000000
+PathchangeRate = 10000000
