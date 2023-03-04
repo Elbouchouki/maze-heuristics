@@ -1,5 +1,6 @@
 from Utils import updateGrid
 from Params import *
+import time
 
 
 def get_minimum(OpenSet):
@@ -11,6 +12,7 @@ def get_minimum(OpenSet):
 
 
 def dijkstra(OpenSet, ClosedSet, StartNode, EndNode, grid, win):
+    start = time.time()
     StartNode.g = 0
     OpenSet.append(StartNode)
     ContinueSearch = True
@@ -39,5 +41,7 @@ def dijkstra(OpenSet, ClosedSet, StartNode, EndNode, grid, win):
         if DrawGrid:
             updateGrid(OpenSet=OpenSet, ClosedSet=ClosedSet,
                        grid=grid, win=win)
+    end = time.time()
+    execution = (end-start) * TIME_V
 
-    return OpenSet, ClosedSet, StartNode, EndNode
+    return OpenSet, ClosedSet, StartNode, EndNode, execution
