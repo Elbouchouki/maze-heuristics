@@ -4,6 +4,7 @@ from Params import *
 # euclidienne
 # manhattan
 # tchebychev
+# minkowski
 
 
 def printSolution(solution):
@@ -15,7 +16,7 @@ def printSolution(solution):
 
 
 if __name__ == "__main__":
-    grid = imageToGrid('./exemples/yolo.png')
+    grid = imageToGrid('./exemples/100x100.png')
     # grid = init_grid()
 
     # printSolution(Test_A_Star(grid=grid, distanceType="euclidienne"))
@@ -28,6 +29,9 @@ if __name__ == "__main__":
 
     printSolution(Test_A_Star(grid=grid, distanceType="tchebychev"))
 
+    print()
+
+    printSolution(Test_A_Star(grid=grid, distanceType="minkowski"))
     # print()
 
     # printSolution(Test_Dijkstra(grid=grid))
