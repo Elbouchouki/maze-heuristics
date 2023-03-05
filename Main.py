@@ -14,7 +14,7 @@ def printSolution(solution):
     if (waitForStart):
         input("")
 
-
+# // axawa had l3jeb 
 if __name__ == "__main__":
     # A_Start_Distants_Tests()
     # grid = imageToGrid('./exemples/normal.png')
