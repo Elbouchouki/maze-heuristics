@@ -50,7 +50,7 @@ class Spot:
             self.neighbors.append(grid[self.i][self.j+1])
             if self.i > 0:
                 self.neighbors.append(grid[self.i-1][self.j+1])
-            if self.i < rows-1:
+            if self.i < self.rows-1:
                 self.neighbors.append(grid[self.i+1][self.j+1])
 
         if self.j > 0:
@@ -80,7 +80,7 @@ def init_grid():
     return grid
 
 
-def init_test(grid=init_grid()):
+def init_test(grid):
     StartNode = grid[0][0]
     EndNode = grid[len(grid)-1][len(grid[0])-1]
     StartNode.isWall = False

@@ -1,6 +1,7 @@
 from .Distances import heuristic
 from Utils import updateGrid
 from Params import *
+import time
 
 
 def get_best_heuristic(OpenSet):
@@ -12,12 +13,13 @@ def get_best_heuristic(OpenSet):
 
 
 def astar(OpenSet, ClosedSet, StartNode, EndNode, grid, win, distanceType="euclidienne"):
+    start = time.time()
     StartNode.g = 0
     StartNode.h = heuristic(StartNode, EndNode, distanceType)
     StartNode.f = StartNode.h + StartNode.g
     OpenSet.append(StartNode)
     ContinueSearch = True
-    iLoop = 1
+
     # Step1 -  Start the loop to find the best solution
     while ContinueSearch:
 
@@ -72,5 +74,7 @@ def astar(OpenSet, ClosedSet, StartNode, EndNode, grid, win, distanceType="eucli
             updateGrid(OpenSet=OpenSet, ClosedSet=ClosedSet,
                        grid=grid, win=win)
 
-        iLoop += 1
-    return OpenSet, ClosedSet, StartNode, EndNode
+    end = time.time()
+    execution = (end-start) * TIME_V
+
+    return OpenSet, ClosedSet, StartNode, EndNode, execution

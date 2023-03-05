@@ -1,2 +1,2 @@
 from .Astar import astar, heuristic
-from .TestAlgos import Test_A_Star, A_Start_Distants_Tests, Test_Dijkstra
+from .TestAlgos import Test_A_Star, Test_Dijkstra
