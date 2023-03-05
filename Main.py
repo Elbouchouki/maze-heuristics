@@ -16,22 +16,23 @@ def printSolution(solution):
 
 
 if __name__ == "__main__":
-    grid = imageToGrid('./exemples/100x100.png')
+    grid = imageToGrid('./exemples/25x25.png')
     # grid = init_grid()
 
-    # printSolution(Test_A_Star(grid=grid, distanceType="euclidienne"))
+    printSolution(Test_A_Star(grid=grid, distanceType="euclidienne"))
 
-    # print()
+    print()
 
-    # printSolution(Test_A_Star(grid=grid, distanceType="manhattan"))
+    printSolution(Test_A_Star(grid=grid, distanceType="manhattan"))
 
-    # print()
+    print()
 
     printSolution(Test_A_Star(grid=grid, distanceType="tchebychev"))
 
     print()
 
     printSolution(Test_A_Star(grid=grid, distanceType="minkowski"))
-    # print()
 
-    # printSolution(Test_Dijkstra(grid=grid))
+    print()
+
+    printSolution(Test_Dijkstra(grid=grid))

@@ -46,9 +46,10 @@ def astar(OpenSet, ClosedSet, StartNode, EndNode, grid, win, distanceType="eucli
 
                 if (CurrentNode.neighbors[i] not in ClosedSet):
                     # use heuristic function for determing stepsize
-                    tempG = CurrentNode.g + \
-                        heuristic(
-                            CurrentNode, CurrentNode.neighbors[i], distanceType)
+                    tempG = CurrentNode.g + 1
+                    # \
+                    #     heuristic(
+                    #         CurrentNode, CurrentNode.neighbors[i], distanceType)
 
                     if CurrentNode.neighbors[i] in OpenSet:
                         # if neighbors is in OpenSet, we already visited the neighbor and it already has a g value, so check if this is a shorter path
@@ -65,7 +66,7 @@ def astar(OpenSet, ClosedSet, StartNode, EndNode, grid, win, distanceType="eucli
 
                     # Step 2e-2: set f cost of neigbor
                     CurrentNode.neighbors[i].h = heuristic(
-                        CurrentNode.neighbors[i], EndNode)
+                        CurrentNode.neighbors[i], EndNode, distanceType)
                     CurrentNode.neighbors[i].f = CurrentNode.neighbors[i].g + \
                         CurrentNode.neighbors[i].h
 
