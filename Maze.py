@@ -24,10 +24,8 @@ class Spot:
         self.neighbors = None
         self.neighboringWalls = None
 
-        # Where did I come from?
         self.Parent = None
 
-        # Am I a wall?
         self.isWall = False
 
     def show(self, win, color):
@@ -35,10 +33,8 @@ class Spot:
             self.shape.setFill(color)
 
         else:
-            # self.shape = Circle(Point(self.i*w,self.j*h), 10)
             self.shape = Rectangle(
                 Point(self.i*height/self.rows, self.j*width/self.cols), Point((self.i+1)*height/self.rows, (self.j+1)*width/self.cols))
-            # self.shape.setOutline("blue")
             self.shape.setFill(color)
             self.shape.draw(win)
 
@@ -97,9 +93,11 @@ def imageToGrid(img: str):
     cols = len(A[0])
     grid = [[Spot(i, j, cols=cols, rows=rows)
              for j in range(cols)] for i in range(rows)]
+
     for i in range(rows):
         for j in range(cols):
             grid[i][j].addNeighbors(grid)
+    # add walls to grid
     for j in range(cols):
         for i in range(rows):
             if A[i][j] == False:
