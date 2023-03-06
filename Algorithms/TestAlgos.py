@@ -4,6 +4,9 @@ from Graphics import *
 from Utils import draw_path, updateGrid
 from .Astar import astar
 from .Dijkstra import dijkstra
+from .depthFirstSearch import depthFirstSearch
+from .breadthFirstSearch import breadthFirstSearch
+from .bestFirstSearch import bestFirstSearch
 
 
 def printSolution(solution):
@@ -29,34 +32,33 @@ def prepareTest(TestName: str, grid):
 
 def Test_A_Star(grid, distanceType):
     testname = "Astar "+distanceType.capitalize()
-    grid, OpenSet, ClosedSet, StartNode, EndNode, win = prepareTest(
-        TestName=testname, grid=grid)
-
-    OpenSet, ClosedSet, StartNode, EndNode, execution = astar(
-        distanceType=distanceType, OpenSet=OpenSet, ClosedSet=ClosedSet, StartNode=StartNode, EndNode=EndNode, grid=grid, win=win)
-
-    solutionLength = draw_path(StartNode, EndNode, win)
-
-    if (waitForStart):
-        input("")
-    if DrawGrid:
-        win.close()
-    return {
-        "testname": testname,
-        "pathLength": solutionLength,
-        "opened": len(OpenSet),
-        "explored": len(ClosedSet),
-        "execution": execution
-    }
+    return Test(testname, grid, lambda OpenSet, ClosedSet, StartNode, EndNode, grid, win: astar(distanceType=distanceType, OpenSet=OpenSet, ClosedSet=ClosedSet, StartNode=StartNode, EndNode=EndNode, grid=grid, win=win))
 
 
-def Test_Dijkstra(grid=init_grid()):
-    testname = "Dijkstra"
+def Test_BestFirstSearch(grid, distanceType):
+    testname = "BestFirstSearch "+distanceType.capitalize()
+    return Test(testname, grid, lambda OpenSet, ClosedSet, StartNode, EndNode, grid, win: bestFirstSearch(distanceType=distanceType, OpenSet=OpenSet, ClosedSet=ClosedSet, StartNode=StartNode, EndNode=EndNode, grid=grid, win=win))
+
+
+def Test_Dijkstra(grid):
+    return Test("Dijkstra", grid, dijkstra)
+
+
+def Test_DepthFirstSearch(grid):
+    return Test("DepthFirstSearch", grid, depthFirstSearch)
+
+
+def Test_BreadthFirstSearch(grid):
+    return Test("BreadthFirstSearch", grid, breadthFirstSearch)
+
+
+def Test(TestName: str, grid, algorithm):
+    testname = TestName
     grid, OpenSet, ClosedSet, StartNode, EndNode, win = prepareTest(
         testname, grid)
 
     # here astar algorithm
-    OpenSet, ClosedSet, StartNode, EndNode, execution = dijkstra(
+    OpenSet, ClosedSet, StartNode, EndNode, execution = algorithm(
         OpenSet=OpenSet, ClosedSet=ClosedSet, StartNode=StartNode, EndNode=EndNode, grid=grid, win=win)
     # here solution drawing if exists
     solutionLength = draw_path(StartNode, EndNode, win)

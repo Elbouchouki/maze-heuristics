@@ -1,7 +1,7 @@
 height = 500
 width = 500
-cols = 100
-rows = 100
+cols = 30
+rows = 30
 w = height/rows
 h = width/cols
 WallPercentage = 30

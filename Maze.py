@@ -88,9 +88,10 @@ def imageToGrid(img: str):
     temp = Image.open(img)
     temp = temp.convert('1')
     A = np.array(temp)
-    (A.shape[0], A.shape[1])
+    # (A.shape[0], A.shape[1])
     rows = len(A)
     cols = len(A[0])
+
     grid = [[Spot(i, j, cols=cols, rows=rows)
              for j in range(cols)] for i in range(rows)]
 
