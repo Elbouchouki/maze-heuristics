@@ -6,6 +6,14 @@ from .Astar import astar
 from .Dijkstra import dijkstra
 
 
+def printSolution(solution):
+    print("Algorithm -> ", solution["testname"])
+    print("SolutionLength : ", solution["pathLength"])
+    print("In queue : ", solution["opened"])
+    print("Explored : ", solution["explored"])
+    print("Execution time : ", solution["execution"])
+
+
 def prepareTest(TestName: str, grid):
     grid, OpenSet, ClosedSet, StartNode, EndNode = init_test(grid=grid)
     win = None
@@ -19,7 +27,7 @@ def prepareTest(TestName: str, grid):
     return grid, OpenSet, ClosedSet, StartNode, EndNode, win
 
 
-def Test_A_Star(grid, distanceType="euclidienne"):
+def Test_A_Star(grid, distanceType):
     testname = "Astar "+distanceType.capitalize()
     grid, OpenSet, ClosedSet, StartNode, EndNode, win = prepareTest(
         TestName=testname, grid=grid)

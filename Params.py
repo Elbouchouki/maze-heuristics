@@ -1,7 +1,7 @@
 height = 500
 width = 500
-cols = 50
-rows = 50
+cols = 100
+rows = 100
 w = height/rows
 h = width/cols
 WallPercentage = 30
@@ -21,4 +21,4 @@ changeRate = 100
 PathchangeRate = 10000000
 
 
-minkowski_p = 10
+minkowski_p = 100

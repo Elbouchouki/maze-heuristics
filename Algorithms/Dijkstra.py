@@ -31,10 +31,10 @@ def dijkstra(OpenSet, ClosedSet, StartNode, EndNode, grid, win):
             if (CurrentNode.neighbors[i] not in ClosedSet) and (CurrentNode.neighbors[i].isWall == False):
                 if CurrentNode.neighbors[i] in OpenSet:
                     if CurrentNode.g < CurrentNode.neighbors[i].g:
-                        CurrentNode.neighbors[i].g = CurrentNode.g
+                        CurrentNode.neighbors[i].g = CurrentNode.g + 1
                         CurrentNode.neighbors[i].Parent = CurrentNode
                 else:
-                    CurrentNode.neighbors[i].g = CurrentNode.g
+                    CurrentNode.neighbors[i].g = CurrentNode.g + 1
                     OpenSet.append(CurrentNode.neighbors[i])
                     CurrentNode.neighbors[i].Parent = CurrentNode
 
