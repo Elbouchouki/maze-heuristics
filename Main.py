@@ -2,11 +2,9 @@ from Algorithms import Test_A_Star, Test_Dijkstra, Test_DepthFirstSearch, Test_B
 from Maze import imageToGrid, init_grid
 from Params import *
 import math
-
-# euclidienne
-# manhattan
-# tchebychev
-# minkowski
+import sys
+import getopt
+from pympler import asizeof
 
 
 def ay(sol):
@@ -31,7 +29,7 @@ def compareAll(algo):
         # "normal",
         # "large",
         "25x25", "40x40", "50x50",
-        # "60x60-b",
+        "60x60-b",
         # "100x100-best"
     ]
     d = {"Maze": ["Euclidianne", "Mnhathan",
@@ -39,10 +37,12 @@ def compareAll(algo):
     for s in graphs:
         d[s] = runAll(s, algo)
     for k, v in d.items():
+        if (k.endswith('b')):
+            print("")
+
         euclidienne, manhattan, tchebychev, minkowski, dijkstra = v
         print("{:<10} {:<25} {:<25} {:<25} {:<25} {:<25}".format(
             k, euclidienne, manhattan, tchebychev, minkowski, dijkstra))
-    # print(d)
 
 
 def compare():
@@ -52,42 +52,77 @@ def compare():
     compareAll(Test_A_Star)
 
 
-def tests(grid):
+def getMazeSize(maze):
+    spot_size = asizeof.asizeof(maze[0][0])*1e-6
+    print(spot_size*2000*2000)
 
-    # printSolution(Test_BreadthFirstSearch(grid=grid))
 
-    # print()
+def optParse(opts):
+    gridType = None
+    comparaison = None
+    algorithm = None
+    distance = None
+    toBeCompared = None
+    for opt, arg in opts:
+        if opt == '-g':
+            gridType = arg
+        if opt == '-c':
+            comparaison = arg
+        if opt == '-a':
+            algorithm = arg
+        if opt == '-d':
+            distance = arg
+        if opt == '-t':
+            toBeCompared = arg
+    return gridType, comparaison, algorithm, distance, toBeCompared
 
-    # printSolution(Test_DepthFirstSearch(grid=grid))
 
-    # print()
+def gridFactory(gridType):
+    grid = None
+    if gridType == "autogenerate":
+        grid = init_grid()
+    else:
+        grid = imageToGrid(gridType)
+    return grid
 
-    printSolution(Test_BestFirstSearch(grid=grid, distanceType="manhattan"))
 
-    # print()
+def algorithmFactory(algorithm="astar"):
+    if algorithm == "astar":
+        return Test_A_Star
+    if algorithm == "dijkstra":
+        return Test_Dijkstra
+    if algorithm == "breadthFirstSearch":
+        return Test_BreadthFirstSearch
+    if algorithm == "depthFirstSearch":
+        return Test_DepthFirstSearch
+    if algorithm == "bestFirstSearch":
+        return Test_BestFirstSearch
 
-    # printSolution(Test_A_Star(grid=grid, distanceType="euclidienne"))
 
-    # print()
-
-    # printSolution(Test_A_Star(grid=grid, distanceType="manhattan"))
-
-    # print()
-
-    # printSolution(Test_A_Star(grid=grid, distanceType="tchebychev"))
-
-    # print()
-
-    # printSolution(Test_A_Star(grid=grid, distanceType="minkowski"))
-
-    # print()
-
-    # printSolution(Test_Dijkstra(grid=grid))
+def toBeComparedFactory(toBeCompared):
+    if toBeCompared == "astar":
+        return Test_A_Star
+    if toBeCompared == "bestFirstSearch":
+        return Test_BestFirstSearch
 
 
 if __name__ == "__main__":
-    # grid = imageToGrid('./exemples/25x25.png')
-    # grid = init_grid()
-    # tests(grid)
-    # compareAll(Test_A_Star)
-    compare()
+    opts, args = getopt.getopt(sys.argv[1:], "g:c:t:a:d:", [
+                               'gridType', 'comparaison', 'toBeCompared', 'algorithmType', 'distanceType'])
+
+    gridType, comparaison, algorithmType, distanceType, toBeCompared = optParse(
+        opts)
+    grid = gridFactory(gridType)
+
+    if (comparaison):
+        if (toBeCompared):
+            compareAll(toBeComparedFactory(toBeCompared))
+        else:
+            compare()
+        exit(0)
+
+    algorithm = algorithmFactory(algorithmType)
+    try:
+        print(printSolution(algorithm(grid, distanceType)))
+    except:
+        print("No Path Found")

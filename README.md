@@ -1,7 +1,102 @@
-Le problème de pathfinding est un domaine clé de la robotique, qui consiste à trouver le chemin optimal pour un robot se déplacer d'un point A à un point B dans un environnement donné. Ce problème peut être rencontré dans de nombreuses applications robotiques telles que la navigation autonome, la planification de trajectoires pour les robots industriels, ou même dans les jeux vidéo.
+## PathFinding Algorithms
 
-Pour résoudre ce problème, on peut utiliser une variété d'algorithmes de recherche de chemins. Le premier algorithme que nous pouvons utiliser est l'algorithme de Dijkstra, qui consiste à trouver le chemin le plus court en utilisant la recherche de graphe. Cette méthode est simple à implémenter, mais elle peut être lente pour des graphes de grande taille.
+# grids :
+  - autogenerate 
+  - './exemples/normal.png'
+  - './exemples/small.png'
+  - './exemples/large.png'
+  - './exemples/25x25.png'
+  - './exemples/40x40.png'
+  - './exemples/50x50.png'
+  - './exemples/100x100.png'
 
-Pour améliorer la performance, on peut utiliser des méthodes de recherche informée comme l'algorithme A*. L'algorithme A* utilise une heuristique pour guider la recherche du chemin optimal en réduisant l'espace de recherche. Nous pouvons utiliser différentes heuristiques telles que les distances euclidiennes, manhattan, ou tchebykechv pour obtenir des résultats encore meilleurs.
 
-En utilisant ces algorithmes de pathfinding, nous pouvons fournir aux robots une intelligence de déplacement pour se déplacer de manière efficace et optimale dans leur environnement.
+#### BreadthFirstSearch
+  
+```python
+python3 Main.py -g autogenerate -a breadthFirstSearch True
+```
+
+#### DepthFirstSearch
+
+```python
+python3 Main.py -g autogenerate -a depthFirstSearch True
+```
+
+#### DepthFirstSearch
+
+```python
+python3 Main.py -g autogenerate -a dijkstra True
+```
+
+
+#### BestFirstSearch
+
+- bestFirstSearch euclidienne :
+
+```python
+python3 Main.py -g autogenerate -a bestFirstSearch -d euclidienne True
+```
+
+- bestFirstSearch manhattan :
+
+```python
+python3 Main.py -g autogenerate -a bestFirstSearch -d manhattan True
+```
+
+- bestFirstSearch tchebychev :
+
+```python
+python3 Main.py -g autogenerate -a bestFirstSearch -d tchebychev True
+```
+
+- bestFirstSearch minkowski :
+  
+```python
+python3 Main.py -g autogenerate -a bestFirstSearch -d minkowski True
+```
+
+- Compare All bestFirstSearch distances :
+
+```python
+python3 Main.py -g autogenerate -c true -t bestFirstSearch
+```
+
+
+#### Astar
+
+- astar euclidienne :
+
+```python
+python3 Main.py -g autogenerate -a astar -d euclidienne True
+```
+
+- astar manhattan :
+
+```python
+python3 Main.py -g autogenerate -a astar -d manhattan True
+```
+
+- astar tchebychev :
+
+```python
+python3 Main.py -g autogenerate -a astar -d tchebychev True
+```
+
+- astar minkowski :
+
+```python
+python3 Main.py -g autogenerate -a astar -d minkowski True
+```
+
+- Compare All astar distances :
+
+```python
+python3 Main.py -g autogenerate -c true -t astar
+```
+
+# Compare Everything
+
+```python
+python3 Main.py -g autogenerate -c true 
+```

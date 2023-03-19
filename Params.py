@@ -1,12 +1,15 @@
-height = 500
-width = 500
+import sys
+
+
+height = 800
+width = 800
 cols = 30
 rows = 30
 w = height/rows
 h = width/cols
 WallPercentage = 30
-DrawGrid = False
-waitForStart = False
+DrawGrid = bool(sys.argv[-1] == "True")
+waitForStart = bool(sys.argv[-1] == "True")
 
 NODE_EMPTY = 'white'
 NODE_BORDER = 'black'
@@ -17,7 +20,7 @@ NODE_CLOSED = 'red'
 
 TIME_V = 1000
 
-changeRate = 100
+changeRate = 10
 PathchangeRate = 10000000
 
 
