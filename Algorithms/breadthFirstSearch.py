@@ -5,7 +5,6 @@ import time
 
 def breadthFirstSearch(OpenSet, ClosedSet, StartNode, EndNode, grid, win):
     start = time.time()
-    lisr = []
     OpenSet.append(StartNode)
     ContinueSearch = True
     while ContinueSearch:

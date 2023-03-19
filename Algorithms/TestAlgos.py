@@ -40,15 +40,15 @@ def Test_BestFirstSearch(grid, distanceType):
     return Test(testname, grid, lambda OpenSet, ClosedSet, StartNode, EndNode, grid, win: bestFirstSearch(distanceType=distanceType, OpenSet=OpenSet, ClosedSet=ClosedSet, StartNode=StartNode, EndNode=EndNode, grid=grid, win=win))
 
 
-def Test_Dijkstra(grid):
+def Test_Dijkstra(grid, nu=None):
     return Test("Dijkstra", grid, dijkstra)
 
 
-def Test_DepthFirstSearch(grid):
+def Test_DepthFirstSearch(grid, nu=None):
     return Test("DepthFirstSearch", grid, depthFirstSearch)
 
 
-def Test_BreadthFirstSearch(grid):
+def Test_BreadthFirstSearch(grid, nu=None):
     return Test("BreadthFirstSearch", grid, breadthFirstSearch)
 
 

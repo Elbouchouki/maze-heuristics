@@ -3,6 +3,7 @@ from Params import *
 
 
 def updateGrid(OpenSet, ClosedSet, grid, win):
+    # if (DrawGrid):
     for j in range(len(grid[0])):
         for i in range(len(grid)):
 
